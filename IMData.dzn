@@ -7,7 +7,7 @@ WaitingQueue = array3d(AllPaths,Property,Serial,
 [
 %path1
 1, 3, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
+20, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path2
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
@@ -24,10 +24,10 @@ WaitingQueue = array3d(AllPaths,Property,Serial,
 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path7
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path8
-1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
+1, 1, 1, 1, 1, 7, 1, 1, 1, 4, 1, 1, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path9
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
@@ -36,7 +36,7 @@ WaitingQueue = array3d(AllPaths,Property,Serial,
 1, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path11
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
+1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, %Priority
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, %TimeWaited
 %path12
 1, 1, 3, 1, 3, 3, 1, 3, 1, 1, 1, 3, 1, 1, 1, %Priority
