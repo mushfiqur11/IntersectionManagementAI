@@ -1,9 +1,8 @@
+int: maxQueue = 15;
+set of int: AllPaths = 1..12;
+set of int: Serial = 1..15;
+set of int: Property = 1..2;
 
-
-int: maxQueue;
-set of int: AllPaths;
-set of int: Serial;
-set of int: Property;
 array[AllPaths,Property,Serial] of int: WaitingQueue;
 array[AllPaths,Property,Serial] of var int: NewWaitingQueue;
 
