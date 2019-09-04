@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="300" height="300" viewBox="-100.0 -100.0 200 200">
+<defs>
+</defs>
+<path d="M-30,100 L30,100 L30,30 L100,30 L100,-30 L30,-30 L30,-100 L-30,-100 L-30,-30 L-100,-30 L-100,30 L-30,30 Z" fill="#eeeeee" stroke="black" />
+<path d="M-100,-20 L-30,-20" stroke="black" fill="none" />
+<path d="M-100,-10 L-30,-10" stroke="black" fill="none" />
+<path d="M-100,-0.5 L-30,-0.5 L-30,0.5 L-100,0.5" stroke="black" fill="none" />
+<path d="M-100,10 L-30,10" stroke="black" fill="none" />
+<path d="M-100,20 L-30,20" stroke="black" fill="none" />
+<path d="M100,-20 L30,-20" stroke="black" fill="none" />
+<path d="M100,-10 L30,-10" stroke="black" fill="none" />
+<path d="M100,-0.5 L30,-0.5 L30,0.5 L100,0.5" stroke="black" fill="none" />
+<path d="M100,10 L30,10" stroke="black" fill="none" />
+<path d="M100,20 L30,20" stroke="black" fill="none" />
+<path d="M20,100 L20,30" stroke="black" fill="none" />
+<path d="M10,100 L10,30" stroke="black" fill="none" />
+<path d="M0.5,100 L0.5,30 L-0.5,30 L-0.5,100" stroke="black" fill="none" />
+<path d="M-10,100 L-10,30" stroke="black" fill="none" />
+<path d="M-20,100 L-20,30" stroke="black" fill="none" />
+<path d="M20,-100 L20,-30" stroke="black" fill="none" />
+<path d="M10,-100 L10,-30" stroke="black" fill="none" />
+<path d="M0.5,-100 L0.5,-30 L-0.5,-30 L-0.5,-100" stroke="black" fill="none" />
+<path d="M-10,-100 L-10,-30" stroke="black" fill="none" />
+<path d="M-20,-100 L-20,-30" stroke="black" fill="none" />
+<circle cx="30" cy="-30" r="35" stroke-dasharray="54.97787143782138 164.93361431346415" stroke-dashoffset="-54.97787143782138" stroke="green" stroke-width="10" stroke-opacity="0.8" fill="none" />
+<path d="M-5,-100 L-5,-30" stroke="green" stroke-width="10" stroke-opacity="0.8" fill="none" />
+<path d="M100,5 L30,5" stroke="green" stroke-width="10" stroke-opacity="0.8" fill="none" />
+<path d="M100,15 L-100,15" stroke="green" stroke-width="10" stroke-opacity="0.8" fill="none" />
+</svg>

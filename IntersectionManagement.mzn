@@ -93,7 +93,7 @@ output [
 "\nAllPaths = 1..12;"++
 "\nSerial = 1..maxQueue;"++
 "\nProperty = 1..2;"++
-"\nWaitingQueue = array3d(AllPaths,Property,Serial,\n"++show(NewWaitingQueue[AllPaths,Property,Serial])++");" 
+"\nWaitingQueue = array3d(AllPaths,Property,Serial,\n"++show(NewWaitingQueue)++");" 
 ]
 
 % output [
