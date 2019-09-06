@@ -16,15 +16,21 @@ The python notebook doesn't work yet. To run the system, the model needs to be m
 ### Instruction
 #### Install MiniZinc
 For linux-based OS please use the following code on terminal
-	sudo apt-get update
-	sudo apt-get install minizinc
+```
+sudo apt-get update
+sudo apt-get install minizinc
+```
 
 For Mac
 - Launch Terminal by pressing *command*+*space*, type terminal and hit Enter key.
 - Run
-	- ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+```
 - Run
-	- brew install minizinc
+```
+brew install minizinc
+```
 
 For Windows
 The python and minizinc integration is still at an early stage. And windows support is still not properly available yet.
@@ -34,10 +40,14 @@ Use any python notebook. Jupyter notebook can be installed through anaconda[http
 
 #### Install iminizinc library
 Run the following code to install iminizinc[https://github.com/MiniZinc/iminizinc] extension
-	- pip install -U iminizinc
+```
+pip install -U iminizinc
+```
 
 Make sure that the mzn2fzn binary and the solvers are at the PATH when running iminizinc on python notebook.
 
 #### Install drawSVG
 Run the following code in terminal to install drawSVG[https://pypi.org/project/drawSvg/]
-	- pip install drawSVG
+```
+pip install drawSVG
+```
