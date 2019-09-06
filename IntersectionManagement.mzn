@@ -13,8 +13,16 @@ array[AllPaths] of var 0..1: paths;
 
 array[AllPaths] of 0..1: oldPaths;
 
+array[AllPaths] of var -2..2: changeCost;
+    
 %Cost of keeping a red light red
-int:WaitingCost = 20;
+int:WaitingCost = 4;
+    
+%Cost of making a red light green
+int:StartingCost = 4;
+    
+%Cost of keeping green light green
+int:MovingCost = 4;
 
 %All the paths that cannot be simultaneously on
 constraint paths[1]*paths[3]=0;
@@ -41,73 +49,58 @@ constraint forall(i in AllPaths,k in Serial)(NewWaitingQueue[i,2,k]>=0);
 
 %Updating the priorities
 constraint 
-  forall(i in AllPaths,k in Serial)(
-    %RED LIGHT
-    if paths[i]==0 then
-      NewWaitingQueue[i,1,k]=WaitingQueue[i,1,k]
-    %GREEN LIGHT
-    elseif oldPaths[i]==1 /\ k<=11 then %4 cars exiting queue
-          NewWaitingQueue[i,1,k] = WaitingQueue[i,1,k+4]
-    elseif oldPaths[i]==1 /\ k>11 then %4 new spaces in the queue
-          NewWaitingQueue[i,1,k] = 0
-    elseif oldPaths[i]==0 /\ k<=13 then %2 cars exiting queue
-          NewWaitingQueue[i,1,k] = WaitingQueue[i,1,k+2]
-    elseif oldPaths[i]==0 /\ k>13 then %2 new spaces in the queue
-          NewWaitingQueue[i,1,k] = 0
-    else true
-    endif
-    );
+forall(i in AllPaths,k in Serial)(
+%RED LIGHT
+if paths[i]==0 then
+NewWaitingQueue[i,1,k]=WaitingQueue[i,1,k]
+%GREEN LIGHT
+elseif oldPaths[i]==1 /\ k<=9 then %6 cars exiting queue
+  NewWaitingQueue[i,1,k] = WaitingQueue[i,1,k+6]
+elseif oldPaths[i]==1 /\ k>9 then %6 new spaces in the queue
+  NewWaitingQueue[i,1,k] = 0
+elseif oldPaths[i]==0 /\ k<=14 then %1 cars exiting queue
+  NewWaitingQueue[i,1,k] = WaitingQueue[i,1,k+1]
+elseif oldPaths[i]==0 /\ k>14 then %1 new spaces in the queue
+  NewWaitingQueue[i,1,k] = 0
+else true
+endif
+);
 
 %Updating the waiting time
 constraint 
-  forall(i in AllPaths,k in Serial)(
-    %RED LIGHT
-    if paths[i]==0 /\ WaitingQueue[i,1,k]>0 then 
-      NewWaitingQueue[i,2,k]=(WaitingQueue[i,2,k]+WaitingCost)
-    %GREEN LIGHT
-    elseif oldPaths[i]==1 /\ k<=11 /\ WaitingQueue[i,1,k+4]>0 then %4 cars exiting queue
-          NewWaitingQueue[i,2,k] = WaitingQueue[i,2,k+4]+WaitingCost
-    elseif oldPaths[i]==1 /\ k<=11 /\ WaitingQueue[i,1,k+4]==0 then
-          NewWaitingQueue[i,2,k] = 0
-    elseif oldPaths[i]==1 /\ k>11 then %4 new spaces in the queue
-          NewWaitingQueue[i,2,k] = 0
-    elseif oldPaths[i]==0 /\ k<=13 /\ WaitingQueue[i,1,k+2]>0 then %2 cars exiting queue
-          NewWaitingQueue[i,2,k] = WaitingQueue[i,2,k+2]+WaitingCost
-    elseif oldPaths[i]==0 /\ k<=13 /\ WaitingQueue[i,1,k+2]==0 then
-          NewWaitingQueue[i,2,k] = 0
-    elseif oldPaths[i]==0 /\ k>13 then %2 new spaces in the queue
-          NewWaitingQueue[i,2,k] = 0
-    else true
-    endif
+forall(i in AllPaths,k in Serial)(
+%RED LIGHT
+if paths[i]==0 /\ WaitingQueue[i,1,k]>0 then 
+NewWaitingQueue[i,2,k]=(WaitingQueue[i,2,k]+WaitingCost)
+%GREEN LIGHT
+elseif oldPaths[i]==1 /\ k<=9 /\ WaitingQueue[i,1,k+6]>0 then %6 cars exiting queue
+  NewWaitingQueue[i,2,k] = WaitingQueue[i,2,k+6]+MovingCost 
+elseif oldPaths[i]==1 /\ k<=9 /\ WaitingQueue[i,1,k+6]==0 then
+  NewWaitingQueue[i,2,k] = 0
+elseif oldPaths[i]==1 /\ k>9 then %6 new spaces in the queue
+  NewWaitingQueue[i,2,k] = 0
+elseif oldPaths[i]==0 /\ k<=14 /\ WaitingQueue[i,1,k+1]>0 then %1 cars exiting queue
+  NewWaitingQueue[i,2,k] = WaitingQueue[i,2,k+1]+StartingCost
+elseif oldPaths[i]==0 /\ k<=14 /\ WaitingQueue[i,1,k+1]==0 then
+  NewWaitingQueue[i,2,k] = 0
+elseif oldPaths[i]==0 /\ k>14 then %1 new spaces in the queue
+  NewWaitingQueue[i,2,k] = 0
+else true
+endif
 
-    );
+);
+
+constraint
+forall(i in AllPaths,k in Serial)(
+if paths[i]==1 /\ oldPaths[i]==1 then changeCost[i]=-2
+elseif paths[i]==1 /\ oldPaths[i]==0 then changeCost[i]=-1
+elseif paths[i]==0 /\ oldPaths[i]==0 then changeCost[i]=1
+elseif paths[i]==0 /\ oldPaths[i]==1 then changeCost[i]=2
+else true
+endif
+);
 
 
-var int: TotalSum = sum(i in AllPaths,j in Property, k in Serial)(abs(paths[i]-1)*NewWaitingQueue[i,j,k]);
+var int: TotalSum = sum(i in AllPaths, k in Serial)(changeCost[i]*NewWaitingQueue[i,1,k]) + sum(i in AllPaths, k in Serial)(abs(1-paths[i])*NewWaitingQueue[i,1,k]*NewWaitingQueue[i,2,k]);
 
 solve minimize TotalSum;
-
-output [
-"oldPaths = \(paths);"++
-"\nmaxQueue = 15;"++
-"\nAllPaths = 1..12;"++
-"\nSerial = 1..maxQueue;"++
-"\nProperty = 1..2;"++
-"\nWaitingQueue = array3d(AllPaths,Property,Serial,\n"++show(NewWaitingQueue)++");" 
-]
-
-% output [
-% "\(TotalSum) \n\(paths)"
-% "\n \(NewWaitingQueue[1,1,Serial])"++"  \(NewWaitingQueue[1,2,Serial])"++
-% "\n \(NewWaitingQueue[2,1,Serial])"++"  \(NewWaitingQueue[2,2,Serial])"++
-% "\n \(NewWaitingQueue[3,1,Serial])"++"  \(NewWaitingQueue[3,2,Serial])"++
-% "\n \(NewWaitingQueue[4,1,Serial])"++"  \(NewWaitingQueue[4,2,Serial])"++
-% "\n \(NewWaitingQueue[5,1,Serial])"++"  \(NewWaitingQueue[5,2,Serial])"++
-% "\n \(NewWaitingQueue[6,1,Serial])"++"  \(NewWaitingQueue[6,2,Serial])"++
-% "\n \(NewWaitingQueue[7,1,Serial])"++"  \(NewWaitingQueue[7,2,Serial])"++
-% "\n \(NewWaitingQueue[8,1,Serial])"++"  \(NewWaitingQueue[8,2,Serial])"++
-% "\n \(NewWaitingQueue[9,1,Serial])"++"  \(NewWaitingQueue[9,2,Serial])"++
-% "\n \(NewWaitingQueue[10,1,Serial])"++"  \(NewWaitingQueue[10,2,Serial])"++
-% "\n \(NewWaitingQueue[11,1,Serial])"++"  \(NewWaitingQueue[11,2,Serial])"++
-% "\n \(NewWaitingQueue[12,1,Serial])"++"  \(NewWaitingQueue[12,2,Serial])"
-% ]
