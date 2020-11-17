@@ -1,7 +1,10 @@
-# Vehicle Intersection Management - Heuristic Approach
+# Automated Intersection Management - Heuristic Approach (with MiniZinc)
+[[paper]](https://arxiv.org/abs/2011.07509) [[code]](https://github.com/mushfiqur11/IntersectionManagementAI)
 
-- Md. Mushfiqur Rahman (160041011)
-- Kazi Raiyan Mahmud (160041058)
+- [Md. Mushfiqur Rahman](https://mushfiqur11.github.io/)
+- Nahian Muhtasim Zahin
+- Kazi Raiyan Mahmud
+- Md. Azmaeen Bin Ansar
 
 ### Dependencies
 - MiniZinc
